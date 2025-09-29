@@ -9,13 +9,13 @@ Contact::Contact()
 	Nickname = "";
 	PhoneNumber = "";
 	DarkestSecret = "";
-	std::cout << "Constructor Contact called, all field initialised to empty" << std::endl;
+	//std::cout << "Constructor Contact called, all field initialised to empty" << std::endl;
 }
 
 // destructor of the class Contact
 Contact::~Contact()
 {
-	std::cout << "Destructor Contact called" << std::endl;
+	//std::cout << "Destructor Contact called" << std::endl;
 }
 
 void Contact::AddFirstName()

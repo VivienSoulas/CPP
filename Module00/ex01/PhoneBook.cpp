@@ -14,6 +14,8 @@ int	main()
 			phonebook.AddFunction();
 		else if (temp == "SEARCH")
 			phonebook.SearchFunction();
+		else if (temp == "EXIT")
+			break ;
 		else
 			std::cout << "ERROR : Invalid command" << std::endl;
 	} while (temp != "EXIT");
@@ -27,12 +29,12 @@ PhoneBook::PhoneBook()
 	count = 0;
 	input_index = 0;
 
-	std::cout << "Constructor PhoneBook called" << std::endl;
+	//std::cout << "Constructor PhoneBook called" << std::endl;
 }
 
 PhoneBook::~PhoneBook()
 {
-	std::cout << "Destructor PhoneBook called" << std::endl;
+	//std::cout << "Destructor PhoneBook called" << std::endl;
 }
 
 void PhoneBook::AddFunction()
