@@ -1,5 +1,4 @@
 #include "Contact.hpp"
-// #include needed includes for this file
 
 // constructor for class Contact, initialise the field of the class
 Contact::Contact()

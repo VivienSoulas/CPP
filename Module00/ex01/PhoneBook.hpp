@@ -6,6 +6,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <iomanip>
+#include <csignal>
 #include "Contact.hpp"
 
 class PhoneBook

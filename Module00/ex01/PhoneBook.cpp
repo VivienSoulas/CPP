@@ -1,24 +1,29 @@
 #include "PhoneBook.hpp"
-// more includes needed for this file
 
 int	main()
 {
-	PhoneBook phonebook;
-	std::string temp;
-
-	do
+	PhoneBook	phonebook;
+	std::string	temp;
+	bool		running = true;
+	while (running)
 	{
 		std::cout << "Please enter command: " << std::endl;
-		getline(std::cin, temp);
+		if (!getline(std::cin, temp))
+		{
+			if (std::cin.eof()) // this handles ctl+d by catching the eof signal it sends
+				break;
+			std::cin.clear();
+			continue;
+		}
 		if (temp == "ADD")
 			phonebook.AddFunction();
 		else if (temp == "SEARCH")
 			phonebook.SearchFunction();
 		else if (temp == "EXIT")
-			break ;
+			running = false;
 		else
 			std::cout << "ERROR : Invalid command" << std::endl;
-	} while (temp != "EXIT");
+	}
 	return (0);
 }
 
