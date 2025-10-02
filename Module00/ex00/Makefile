@@ -38,3 +38,8 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@echo "$(MAGENTA)\nExecutable removed!\n$(RESET)"
+
+re: fclean all
+
+# Phony targets
+.PHONY: all clean fclean re
