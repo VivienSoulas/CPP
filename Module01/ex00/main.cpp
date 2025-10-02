@@ -4,19 +4,27 @@
 // it is better to allocate zombies on the stack or the heap.
 int main()
 {
-	Zombie z("BOB");  // Stack allocation - no pointer needed
-	z.announce();     // Use the zombie
-	
-	randomChump("randomChump");
-	Zombie* new_zombie = newZombie("new_Zombie_name");
+	// Stack allocation
+	Zombie z("BOB");
+	z.announce();
 
-	std::cout	<< "calling on new_zombie announce outside of it's function's scope: ";
+	// Stack allocation
+	randomChump("randomChump");
+	// this should fail as randmChump has been destroyed
+	//randomChump.announce();
+
+
+	// Heap allocation
+	Zombie* new_zombie = newZombie("new_Zombie");
+	std::cout	<< "calling on new_zombie announce outside of it's creation function: ";
 	new_zombie->announce();
 
 	delete new_zombie;
 	// this should fail as new_zombie is now destroyed
-	std::cout	<< "calling on new_zombie announce: ";
-	new_zombie->announce();
+	//std::cout	<< "calling on new_zombie announce: ";
+	//new_zombie->announce();
 
+	
+	z.announce();
 	return (0);
 }
