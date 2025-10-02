@@ -44,11 +44,16 @@ PhoneBook::~PhoneBook()
 
 void PhoneBook::AddFunction()
 {
-	contacts[index].AddFirstName();
-	contacts[index].AddLastName();
-	contacts[index].AddNickname();
-	contacts[index].AddPhoneNumber();
-	contacts[index].AddDarkestSecret();
+	if (contacts[index].AddFirstName() == true)
+		return ;
+	if (contacts[index].AddLastName() == true)
+		return ;
+	if (contacts[index].AddNickname() == true)
+		return ;
+	if (contacts[index].AddPhoneNumber() == true)
+		return ;
+	if (contacts[index].AddDarkestSecret() == true)
+		return ;
 	index = (index + 1) % 8;
 	if (count < 8)
 		count++;
@@ -57,6 +62,7 @@ void PhoneBook::AddFunction()
 void PhoneBook::SearchFunction()
 {
 	std::string temp;
+	bool eof = false;
 
 	if (count != 0)
 	{
@@ -77,9 +83,19 @@ void PhoneBook::SearchFunction()
 		do
 		{
 			std::cout << "Select an index:";
-			getline(std::cin, temp);
+		if (!getline(std::cin, temp))
+		{
+			if (std::cin.eof())
+			{
+				eof = true;
+				break;
+			}
+			std::cin.clear();
+			continue;
+		}
 		} while (IsValidIndex(temp) == false);
-		contacts[input_index].DisplayAll();
+		if (eof == false)
+			contacts[input_index].DisplayAll();
 	}
 	else
 		std::cout << "ERROR : No contact available to show" << std::endl;
@@ -87,6 +103,11 @@ void PhoneBook::SearchFunction()
 
 bool PhoneBook::IsValidIndex(std::string temp)
 {
+	if (temp.empty())
+	{
+		std::cout << "ERROR : invalid index" << std::endl;
+		return (false);
+	}
 	for (int i = 0; i < (int)temp.length(); i++)
 	{
 		if (!isdigit(temp[i]))

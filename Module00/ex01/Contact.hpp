@@ -24,11 +24,11 @@ private:
 public:
 	Contact();
 	~Contact();
-	void AddFirstName();
-	void AddLastName();
-	void AddNickname();
-	void AddPhoneNumber();
-	void AddDarkestSecret();
+	bool AddFirstName();
+	bool AddLastName();
+	bool AddNickname();
+	bool AddPhoneNumber();
+	bool AddDarkestSecret();
 	// std::string GetField(int field);
 	std::string GetField(int index);
 	void DisplayFull(std::string input);

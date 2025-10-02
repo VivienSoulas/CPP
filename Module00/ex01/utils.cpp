@@ -49,18 +49,13 @@ int	check_input(std::string* input)
 int	check_number(std::string* input)
 {
 	int	i = 0;
-	int	flag = 0;
 
 	if (input->empty())
 	{
 		std::cout << "ERROR : Field cannot be empty" << std::endl;
 		return (1);
 	}
-	if ((*input)[0] == '+')
-	{
-		flag = 1;
-		i++;
-	}
+
 	while (i < (int)input->length())
 	{
 		if (!isdigit((*input)[i]))
@@ -69,11 +64,6 @@ int	check_number(std::string* input)
 			return (1);
 		}
 		i++;
-	}
-	if ((flag && i != 12) || (!flag && i != 10))
-	{
-		std::cout << "ERROR : Invalid phone number length" << std::endl;
-		return (1);
 	}
 	return (0);
 }

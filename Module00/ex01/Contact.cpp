@@ -17,64 +17,119 @@ Contact::~Contact()
 	//std::cout << "Destructor Contact called" << std::endl;
 }
 
-void Contact::AddFirstName()
+bool Contact::AddFirstName()
 {
+	bool eof = false;
 	std::string temp;
 
 	do
 	{
 		std::cout << "Type in your First Name:" << std::endl;
-		getline(std::cin, temp);
+		if (!getline(std::cin, temp))
+		{
+			if (std::cin.eof())
+			{
+				eof = true;
+				break;
+			}
+			std::cin.clear();
+			continue;
+		}
 	}	while (check_name(&temp) == 1);
 	FirstName = temp;
+	return (eof);
 }
 
-void Contact::AddLastName()
+bool Contact::AddLastName()
 {
+	bool eof = false;
 	std::string temp;
 
 	do
 	{
 		std::cout << "Type in your Last Name:" << std::endl;
-		getline(std::cin, temp);
+		if (!getline(std::cin, temp))
+		{
+			if (std::cin.eof())
+			{
+				eof = true;
+				break;
+			}
+			std::cin.clear();
+			continue;
+		}
 	}	while (check_name(&temp) == 1);
 	LastName = temp;
+	return (eof);
 }
 
-void Contact::AddNickname()
+bool Contact::AddNickname()
 {
+	bool eof = false;
 	std::string temp;
 
 	do
 	{
 		std::cout << "Type in your Nickname:" << std::endl;
-		getline(std::cin, temp);
+		if (!getline(std::cin, temp))
+		{
+			if (std::cin.eof())
+			{
+				eof = true;
+				break;
+			}
+			std::cin.clear();
+			continue;
+		}
 	}	while (check_input(&temp) == 1);
 	Nickname = temp;
+	return (eof);
 }
 
-void Contact::AddPhoneNumber()
+bool Contact::AddPhoneNumber()
 {
+	bool eof = false;
 	std::string temp;
 	
 	do
 	{
 		std::cout << "Type in your Phone Number:" << std::endl;
-		getline(std::cin, temp);
+		if (!getline(std::cin, temp))
+		{
+			if (std::cin.eof())
+			{
+				eof = true;
+				break;
+			}
+			std::cin.clear();
+			continue;
+		}
 	}	while (check_number(&temp) == 1);
 	PhoneNumber = temp;
+	return (eof);
 }
 
-void Contact::AddDarkestSecret()
+bool Contact::AddDarkestSecret()
 {
+	bool eof = false;
 	std::string temp;
 
 	do
 	{
 		std::cout << "Type in your Darkest Secret:" << std::endl;
-		getline(std::cin, temp);
+		if (!getline(std::cin, temp))
+		{
+			if (std::cin.eof())
+			{
+				eof = true;
+				break;
+			}
+			std::cin.clear();
+			continue;
+		}
 	}	while (check_input(&temp) == 1);
 	DarkestSecret = temp;
+	return (eof);
 }
 
 void Contact::DisplayFull(std::string input)
