@@ -1,7 +1,7 @@
 NAME		=	BraiiiiiiinnnzzzZ
 
 SOURCES		=	main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
-HEADERS		=	Zombie.h Zombie.hpp
+HEADERS		=	Zombie.hpp
 OBJ_DIR		=	objects
 OBJECTS		=	$(SOURCES:%.cpp=$(OBJ_DIR)/%.o)
 
