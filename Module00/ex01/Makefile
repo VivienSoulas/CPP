@@ -1,7 +1,7 @@
 NAME		=	phonebook
 
 SOURCES		=	PhoneBook.cpp Contact.cpp utils.cpp
-HEADERS		=	PhoneBook.hpp Contact.hpp PhoneBook.h
+HEADERS		=	PhoneBook.hpp Contact.hpp
 OBJ_DIR		=	objects
 OBJECTS		=	$(SOURCES:%.cpp=$(OBJ_DIR)/%.o)
 
