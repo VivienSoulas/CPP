@@ -34,7 +34,7 @@ $(OBJ_DIR)/%.o: %.cpp $(HEADERS)
 # Cleaning rules
 clean:
 	@rm -rf $(OBJ_DIR)
-	@rm -f test.txt.replace
+	@rm -f test.replace
 	@echo "$(YELLOW)Object files removed$(RESET)"
 
 fclean: clean

@@ -9,9 +9,7 @@ int	main(int ac, char **av)
 		std::ifstream file_in(av[1]);
 		if (!file_in.is_open())
 		{
-			std::cerr	<< "Error: failled to open "
-						<< av[1]
-						<< std::endl;
+			text.Error(av[1]);
 			return (1);
 		}
 	// open file to write output
@@ -19,12 +17,10 @@ int	main(int ac, char **av)
 		std::ofstream file_out(new_out.c_str());
 		if (!file_out.is_open())
 		{
-			std::cerr	<< "Error: failled to open "
-						<< new_out
-						<< std::endl;
+			text.Error(new_out);
 			return (1);
 		}
-	// reads from the in file
+	// reads from the in file and replace
 		std::string read;
 		while ( getline(file_in, read) )
 		{

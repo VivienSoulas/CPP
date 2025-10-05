@@ -22,6 +22,7 @@ class Text
 	std::string getString1();
 	std::string getString2();
 	std::string replacementFunction( std::string original );
+	void Error( std::string string );
 };
 
 #endif
