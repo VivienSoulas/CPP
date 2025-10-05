@@ -1,8 +1,8 @@
-NAME		=	violence
+NAME		=	losers
 
-SOURCES		=	main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+SOURCES		=	main.cpp losers.cpp
 
-HEADERS		=	Weapon.hpp HumanA.hpp HumanB.hpp
+HEADERS		=	losers.hpp
 OBJ_DIR		=	objects
 OBJECTS		=	$(SOURCES:%.cpp=$(OBJ_DIR)/%.o)
 
@@ -34,6 +34,7 @@ $(OBJ_DIR)/%.o: %.cpp $(HEADERS)
 # Cleaning rules
 clean:
 	@rm -rf $(OBJ_DIR)
+	@rm -f test.txt.replace
 	@echo "$(YELLOW)Object files removed$(RESET)"
 
 fclean: clean
