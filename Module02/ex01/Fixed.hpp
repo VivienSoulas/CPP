@@ -3,6 +3,7 @@
 #define FIXED_HPP
 
 #include <iostream>
+#include <cmath>
 
 class Fixed
 {
@@ -13,19 +14,17 @@ class Fixed
 	public:
 	Fixed();
 	Fixed( const Fixed &other );
-	Fixed &operator=( const Fixed &other );
+	Fixed (const int param );
+	Fixed (const float param );
 	~Fixed();
 
-	Fixed (const int param );
-	Fixed (const float param);
+	Fixed &operator=( const Fixed &other );
 	float toFloat( void ) const;
 	int toInt( void ) const;
-	Fixed &operator<<( const Fixed &other );
-//An overload of the insertion («) operator that inserts a floating-point representation
-// of the fixed-point number into the output stream object passed as a parameter
-
 	int getRawBits( void ) const;
 	void setRawBits( int const raw );
 };
+
+std::ostream &operator<<( std::ostream& os, const Fixed &other );
 
 #endif
