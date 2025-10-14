@@ -1,13 +1,15 @@
 #include "Harl.hpp"
 
-int main()
+int main(int ac, char **av)
 {
 	Harl harl;
 
-	// harl.complain("debug");
-	// harl.complain("error");
-	// harl.complain("info");
-	harl.complain("warning");
-	// harl.complain(" ");
+	if (ac != 2)
+	{
+		std::cout	<< "Wrong number of argments \n";
+		return (1);
+	}
+	std::string level = av[1];
+	harl.complain(level);
 	return (0);
 }

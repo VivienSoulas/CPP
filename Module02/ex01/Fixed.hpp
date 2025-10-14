@@ -12,13 +12,15 @@ class Fixed
 	static const int fractional_bits = 8;
 
 	public:
+// Orthodox Canonical class form
 	Fixed();
 	Fixed( const Fixed &other );
-	Fixed (const int param );
-	Fixed (const float param );
+	Fixed &operator=( const Fixed &other );
 	~Fixed();
 
-	Fixed &operator=( const Fixed &other );
+	Fixed(const int param );
+	Fixed(const float param );
+
 	float toFloat( void ) const;
 	int toInt( void ) const;
 	int getRawBits( void ) const;
