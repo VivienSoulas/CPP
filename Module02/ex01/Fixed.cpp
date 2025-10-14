@@ -72,7 +72,7 @@ int Fixed::toInt( void ) const
 
 
 
-std::ostream& operator<<(std::ostream& os, const Fixed &other )
+std::ostream &operator<<(std::ostream &os, const Fixed &other )
 {
 	return (os << other.toFloat());
 }
