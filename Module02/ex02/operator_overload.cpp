@@ -1,82 +1,5 @@
 #include "Fixed.hpp"
 
-/*============================================================================*/
-
-// Orthodox Canonical class form
-Fixed::Fixed()
-{
-	// std::cout	<< "Default constructor called"
-	// 			<< std::endl;
-	value = 0;
-}
-
-Fixed::Fixed(const Fixed &other)
-{
-	// std::cout	<< "Copy constructor called"
-	// 			<< std::endl;
-	*this = other;
-}
-
-Fixed &Fixed::operator=(const Fixed &other)
-{
-	// std::cout	<< "Copy assigmet operator called"
-	// 			<< std::endl;
-	if (this != &other)
-		this->value = other.value;
-	return (*this);
-}
-
-Fixed::~Fixed()
-{
-	// std::cout	<< "Destructor called"
-	// 			<< std::endl;
-}
-// Orthodox Canonical class form
-
-/*============================================================================*/
-
-// Specific constructors
-Fixed::Fixed( const int param )
-{
-// 	std::cout	<< "Int constructor called"
-// 				<< std::endl;
-	this->value = param << fractional_bits;
-}
-
-Fixed::Fixed (const float param )
-{
-	// std::cout	<< "Float constructor called"
-	// 			<< std::endl;
-	this->value = roundf(param * (1 << this->fractional_bits));
-}
-// Specific constructors
-
-/*============================================================================*/
-
-// Class functions
-int Fixed::getRawBits( void ) const
-{
-	return (this->value);
-}
-
-void Fixed::setRawBits( int const raw )
-{
-	this->value = raw;
-}
-
-float Fixed::toFloat( void ) const
-{
-	return ((float)value / (1 << fractional_bits));
-}
-
-int Fixed::toInt( void ) const
-{
-	return (value >> fractional_bits);
-}
-// Class functions
-
-/*============================================================================*/
-
 // Operator overload for printing
 std::ostream &operator<<(std::ostream &os, const Fixed &other )
 {
@@ -84,7 +7,6 @@ std::ostream &operator<<(std::ostream &os, const Fixed &other )
 }
 // Operator overload for printing
 
-/*============================================================================*/
 
 // Comparaison Operator Overlaods
 bool Fixed::operator>( const Fixed &other ) const
@@ -118,7 +40,6 @@ bool Fixed::operator!=( const Fixed &other ) const
 }
 // Comparaison Operator Overlaods
 
-/*============================================================================*/
 
 // Arithmetic Operator Overload
 Fixed Fixed::operator+( const Fixed &other ) const
@@ -179,7 +100,6 @@ Fixed Fixed::operator--( int )
 }
 // Arithmetic Operator Overload
 
-/*============================================================================*/
 
 // Min and Max overload
 Fixed &Fixed::min( Fixed &a, Fixed &b )
@@ -210,5 +130,3 @@ const Fixed &Fixed::max( const Fixed &a, const Fixed &b )
 	return (b);
 }
 // Min and Max overload
-
-/*============================================================================*/
