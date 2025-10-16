@@ -12,10 +12,16 @@ HumanB::~HumanB()
 // could check for if (weapon)
 void HumanB::attack()
 {
-	std::cout	<< name
-				<< " attacks with their "
-				<< weapon->getType()
-				<< std::endl;
+	if (weapon)
+	{
+		std::cout	<< name
+					<< " attacks with their "
+					<< weapon->getType()
+					<< std::endl;
+	}
+	else
+		std::cout	<< name
+					<< " attacks bare handed\n";
 }
 
 void HumanB::setWeapon( Weapon& type )

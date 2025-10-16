@@ -44,6 +44,8 @@ std::string Text::replacementFunction( std::string original )
 	std::string string2 = getString2();
 	std::string replaced;
 
+	if (string1.empty())
+		return original;
 	while ( (found = original.find(string1, pos)) != std::string::npos )
 	{
 		replaced.append(original.substr(pos, found - pos));

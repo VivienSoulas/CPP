@@ -1,7 +1,13 @@
 #include "Point.hpp"
 
-bool bsp( Point const a, Point const b, Point const c, Point const point)
+bool bsp( Point const a, Point const b, Point const c, Point const point )
 {
-	// calculate area of abc
-	// check if point is in abc
+	t_node tree;
+
+	
+	// create a tree
+	// split view om x axis
+	// check if x is hit
+	// split in y
+	// check if y is hit	
 }

@@ -2,7 +2,17 @@
 #ifndef POINT_HPP
 #define POINT_HPP
 
+#define MISS 0
+#define HIT 1
+
 #include "Fixed.hpp"
+
+typedef struct s_node
+{
+	int hit;
+	s_node *right;
+	s_node *left;
+} t_node;
 
 class Point
 {
@@ -23,6 +33,6 @@ class Point
 	int getY( void ) const;
 };
 
-bool bsp( Point const a, Point const b, Point const c, Point const point);
+bool bsp( Point const a, Point const b, Point const c, Point const point );
 
 #endif
