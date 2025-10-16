@@ -10,14 +10,14 @@ Fixed::Fixed()
 	value = 0;
 }
 
-Fixed::Fixed(const Fixed &other)
+Fixed::Fixed( const Fixed &other )
 {
 	// std::cout	<< "Copy constructor called"
 	// 			<< std::endl;
 	*this = other;
 }
 
-Fixed &Fixed::operator=(const Fixed &other)
+Fixed &Fixed::operator=( const Fixed &other )
 {
 	// std::cout	<< "Copy assigmet operator called"
 	// 			<< std::endl;

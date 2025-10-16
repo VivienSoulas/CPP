@@ -7,12 +7,25 @@
 
 #include "Fixed.hpp"
 
-typedef struct s_node
+class Tree
 {
+	public:
+	Tree();
+	Tree( const Tree &other );
+	Tree &operator=( const Tree &other );
+	~Tree();
+
+	Tree( Point const point, const Tree *parent );
+	void buildBSPtriangle( Point const a, Point const b, Point const c );
+	bool checkPoint( Point const a, Point const b, Point const c, Point const point );
+
 	int hit;
-	s_node *right;
-	s_node *left;
-} t_node;
+	int x;
+	int y;
+	Tree *left;
+	Tree *right;
+	Tree *parent;
+};
 
 class Point
 {
