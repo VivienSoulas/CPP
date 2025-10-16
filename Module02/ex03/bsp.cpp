@@ -46,14 +46,14 @@ Tree &Tree::operator=( const Tree &other )
 /*=====================================================================================*/
 
 
-Tree::Tree( Point const point, const Tree *parent )
+Tree::Tree( Point const point, const Tree *par )
 {
 	hit = 0;
 	x = point.getX();
 	y = point.getY();
 	right = NULL;
 	left = NULL;
-	parent = parent;
+	parent = par;
 }
 
 void Tree::buildBSPtriangle( Point const a, Point const b, Point const c )
@@ -64,9 +64,21 @@ void Tree::buildBSPtriangle( Point const a, Point const b, Point const c )
 	this->right->left = new Tree(c, this->right);
 }
 
-bool Tree::checkPoint( Point const a, Point const b, Point const c, Point const point )
+bool Tree::checkPoint( Point const a, Point const b, Point const point )
 {
-	
+	int Y = (a.getY() - b.getY());
+	int X = (a.getY() - b.getY());
+	int diff = ((a.getX() * b.getX()) - (a.getY() * b.getY()));
+	int res = Y * point.getX() + X * point.getY() + diff;
+// inside
+	if (res < 0)
+		std::cout << "here\n";
+		//this->left->checkPoint();
+// outside
+	else
+		std::cout << "not here\n";
+		//this->right;
+	return (true);
 }
 
 /*=====================================================================================*/
@@ -78,7 +90,7 @@ bool bsp( Point const a, Point const b, Point const c, Point const point )
 	root = new Tree();
 	root->buildBSPtriangle(a, b, c);
 
-	if (root->checkPoint(a, b, c, point))
+	if (root->checkPoint(a, b, point))
 	{
 		delete(root);
 		return (true);

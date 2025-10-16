@@ -7,26 +7,6 @@
 
 #include "Fixed.hpp"
 
-class Tree
-{
-	public:
-	Tree();
-	Tree( const Tree &other );
-	Tree &operator=( const Tree &other );
-	~Tree();
-
-	Tree( Point const point, const Tree *parent );
-	void buildBSPtriangle( Point const a, Point const b, Point const c );
-	bool checkPoint( Point const a, Point const b, Point const c, Point const point );
-
-	int hit;
-	int x;
-	int y;
-	Tree *left;
-	Tree *right;
-	Tree *parent;
-};
-
 class Point
 {
 	private:
@@ -44,6 +24,26 @@ class Point
 
 	int getX( void ) const;
 	int getY( void ) const;
+};
+
+class Tree
+{
+	public:
+	Tree();
+	Tree( const Tree &other );
+	Tree &operator=( const Tree &other );
+	~Tree();
+
+	Tree( Point const point, const Tree *parent );
+	void buildBSPtriangle( Point const a, Point const b, Point const c );
+	bool checkPoint( Point const a, Point const b, Point const point );
+
+	int hit;
+	int x;
+	int y;
+	Tree *left;
+	Tree *right;
+	const Tree *parent;
 };
 
 bool bsp( Point const a, Point const b, Point const c, Point const point );
