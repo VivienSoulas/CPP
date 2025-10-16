@@ -61,6 +61,8 @@ Fixed Fixed::operator*( const Fixed &other ) const
 	Fixed result;
 	result.setRawBits((this->getRawBits() * other.getRawBits()) >> fractional_bits);
 	return (result);
+// also possible
+	//return (toFloat() * other.toFloat());
 }
 
 Fixed Fixed::operator/( const Fixed &other ) const
@@ -68,6 +70,8 @@ Fixed Fixed::operator/( const Fixed &other ) const
 	Fixed result;
 	result.setRawBits((this->getRawBits() << fractional_bits) / other.getRawBits());
 	return (result);
+// also possible
+	//return (toFloat() / other.toFloat());
 }
 
 Fixed &Fixed::operator++()
