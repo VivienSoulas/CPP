@@ -1,13 +1,13 @@
-NAME		=	ScavTrap
+NAME		=	DiamondTrap
 
-SOURCES		=	main.cpp ClapTrap.cpp ScavTrap.cpp
+SOURCES		=	main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 
-HEADERS		=	ClapTrap.hpp ScavTrap.hpp
+HEADERS		=	ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.hpp
 OBJ_DIR		=	objects
 OBJECTS		=	$(SOURCES:%.cpp=$(OBJ_DIR)/%.o)
 
 CC			=	c++
-CFLAGS		=	-Wall -Werror -Wextra -std=c++98
+CFLAGS		=	-Wall -Werror -Wextra -std=c++98 -Wshadow -Wno-shadow
 
 # Colors for output
 RED			=	\033[0;31m

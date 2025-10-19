@@ -33,7 +33,7 @@ ClapTrap::~ClapTrap()
 
 /*========================================================================*/
 
-void ClapTrap::attack(const std::string& target)
+void ClapTrap::attack( const std::string& target )
 {
 	if (hit_point > 0)
 	{
@@ -55,7 +55,7 @@ void ClapTrap::attack(const std::string& target)
 		emptyHitPoint();
 }
 
-void ClapTrap::takeDamage(unsigned int amount)
+void ClapTrap::takeDamage( unsigned int amount )
 {
 	if (hit_point > 0)
 	{
@@ -72,7 +72,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 					<< " is already low in hit point\n";
 }
 
-void ClapTrap::beRepaired(unsigned int amount)
+void ClapTrap::beRepaired( unsigned int amount )
 {
 	if (hit_point > 0)
 	{

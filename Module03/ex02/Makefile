@@ -1,8 +1,8 @@
-NAME		=	ScavTrap
+NAME		=	FragTrap
 
-SOURCES		=	main.cpp ClapTrap.cpp ScavTrap.cpp
+SOURCES		=	main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 
-HEADERS		=	ClapTrap.hpp ScavTrap.hpp
+HEADERS		=	ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
 OBJ_DIR		=	objects
 OBJECTS		=	$(SOURCES:%.cpp=$(OBJ_DIR)/%.o)
 
