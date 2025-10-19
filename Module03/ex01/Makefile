@@ -1,8 +1,8 @@
-NAME		=	bsp
+NAME		=	ClapTrap
 
-SOURCES		=	main.cpp Fixed.cpp bsp.cpp Point.cpp Tree.cpp
+SOURCES		=	main.cpp ClapTrap.cpp ScavTrap.cpp
 
-HEADERS		=	Fixed.hpp Point.hpp Tree.hpp
+HEADERS		=	ClapTrap.hpp ScavTrap.hpp
 OBJ_DIR		=	objects
 OBJECTS		=	$(SOURCES:%.cpp=$(OBJ_DIR)/%.o)
 

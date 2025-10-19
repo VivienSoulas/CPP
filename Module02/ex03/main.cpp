@@ -2,21 +2,37 @@
 
 int main()
 {
-// inside
 	Point a;
 	Point b(10, 0);
 	Point c(5, 10);
-	Point point(5, 3);
+
+// edge
+	Point point(a);
 	if (bsp(a, b, c, point))
-		std::cout << "true\n";
+		std::cout << "True\n";
+	else
+		std::cout << "False\n";
+
+// inside
+	Point d(8, 5);
+	if (bsp(a, b, c, d))
+		std::cout << "True\n";
 	else
 		std::cout << "False\n";
 
 // outside
-	Point g(5,-2);
-	if (bsp(a, b, c, g))
+	Point e(5,-2);
+	if (bsp(a, b, c, e))
 		std::cout << "True\n";
 	else
 		std::cout << "False\n";
+
+// on the same vector as AB, but outside the triangle
+	Point f(-5,0);
+	if (bsp(a, b, c, f))
+		std::cout << "True\n";
+	else
+		std::cout << "False\n";
+
 	return (0);
 }

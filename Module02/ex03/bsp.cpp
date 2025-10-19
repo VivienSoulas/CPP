@@ -1,87 +1,64 @@
-#include "Point.hpp"
+#include "Tree.hpp"
 
-/*=======================================================================================*/
-
-Tree::Tree()
+bool Tree::isLeaf() const
 {
-	hit = MISS;
-	x = 0;
-	y = 0;
-	right = NULL;
-	left = NULL;
-	parent = NULL;
+	return (this->left == NULL && this->right == NULL);
 }
 
-Tree::~Tree()
+void Tree::buildBSPtriangle( Point const &a, Point const &b, Point const &c )
 {
-	delete (this->right);
-	delete (this->left);
-	this->left = NULL;
-	this->right = NULL;
+	Tree *A = new Tree(a, this);
+	Tree *B = new Tree(b, this);
+
+	this->left = A;
+	this->right = B;
+	A->right = new Tree(c, A);
+	B->left = new Tree(c, B);
 }
 
-Tree::Tree( const Tree &other )
+int Tree::crossCheck( Point const &a, Point const &b, Point const &point )
 {
-	hit = other.hit;
-	x = other.x;
-	y = other.y;
-	right = other.right;
-	left = other.left;
-	parent = other.parent;
+	int cross = (b.getX() - a.getX()) * (point.getY() - a.getY())
+				- (b.getY() - a.getY()) * (point.getX() - a.getX());
+	return (cross);
 }
 
-Tree &Tree::operator=( const Tree &other )
+bool Tree::checkPoint( Tree *node, Point const &point )
 {
-	if (this != &other)
-	{
-		x = other.x;
-		y = other.y;
-		right = other.right;
-		left = other.left;
-		parent = other.parent;
-	}
-	return (*this);
-}
+	Point *A;
+	Point *B;
 
-/*=====================================================================================*/
+	if (node == NULL)
+		return (false);
+	if (node->isLeaf())
+		return (true);
 
-
-Tree::Tree( Point const point, const Tree *par )
-{
-	hit = 0;
-	x = point.getX();
-	y = point.getY();
-	right = NULL;
-	left = NULL;
-	parent = par;
-}
-
-void Tree::buildBSPtriangle( Point const a, Point const b, Point const c )
-{
-	this->left = new Tree(a, this);
-	this->right = new Tree(b, this);
-	this->left->right = new Tree(c, this->left);
-	this->right->left = new Tree(c, this->right);
-}
-
-bool Tree::checkPoint( Point const a, Point const b, Point const point )
-{
-	int Y = (a.getY() - b.getY());
-	int X = (a.getY() - b.getY());
-	int diff = ((a.getX() * b.getX()) - (a.getY() * b.getY()));
-	int res = Y * point.getX() + X * point.getY() + diff;
-// inside
-	if (res < 0)
-		std::cout << "here\n";
-		//this->left->checkPoint();
-// outside
+	if (node->left)
+		A = &node->left->cur_point;
 	else
-		std::cout << "not here\n";
-		//this->right;
-	return (true);
+		A = &node->cur_point;
+	if (node->right)
+		B = &node->right->cur_point;
+	else
+		B = &node->cur_point;
+
+	int c = crossCheck(*A, *B, point);
+	if (c > 0) // inside triangle, carry on to the left of the tree
+	{
+		if (node->left)
+			return (checkPoint(node->left, point));
+		return (false);
+	}
+	else if (c < 0) // outside of the triangle, carry on on the right of the tree
+	{
+		if (node->right)
+			return (checkPoint(node->right, point));
+		return (false);
+	}
+	else // on the edge of the trangle
+		return (false);
 }
 
-/*=====================================================================================*/
 
 bool bsp( Point const a, Point const b, Point const c, Point const point )
 {
@@ -89,8 +66,7 @@ bool bsp( Point const a, Point const b, Point const c, Point const point )
 
 	root = new Tree();
 	root->buildBSPtriangle(a, b, c);
-
-	if (root->checkPoint(a, b, point))
+	if (root->checkPoint(root, point))
 	{
 		delete(root);
 		return (true);
