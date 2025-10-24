@@ -7,8 +7,8 @@
 int main()
 {
 	Animal *Giraffe = new Animal("Zoo");
-	Cat *Gismo = new Cat("Gismo");
-	Dog *Rex = new Dog("Good boy");
+	Cat *Gismo = new Cat("Cat");
+	Dog *Rex = new Dog("Dog");
 	WrongAnimal *Milou = new WrongAnimal("Milou");
 	WrongCat *Gadget = new WrongCat("Gadget");
 	Cat Soba = *Gismo;
@@ -49,6 +49,9 @@ std::cout << "\n";
 				<< Soba.getType()
 				<< "\n";
 std::cout << "\n";
+
+
+
 	delete(Giraffe);
 	delete(Gismo);
 	delete(Rex);

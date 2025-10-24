@@ -62,5 +62,4 @@ Animal* Animal::clone()
 }
 
 void Animal::whoAmI()
-{
 {}

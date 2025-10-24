@@ -65,6 +65,19 @@ std::cout	<< "Second cat\n";
 	AnimalArray[1]->whoAmI();
 std::cout	<< "\n\n";
 
+std::cout << "Object slicing\n\n";
+	Animal *Jerry = new Cat("Cat");
+	Animal * Rufus = new Dog("Dog");
+std::cout	<< "\nJerry: \n";
+	Jerry->whoAmI();
+std::cout	<< "Rufus: \n";
+	Rufus->whoAmI();
+std::cout	<< "Slicing \n";
+	*Rufus = *Jerry;
+std::cout	<< "Rufus: ";
+	Rufus->whoAmI();
+std::cout << "\n\n";
+
 	for(int i = 0; i < 10; i++)
 		delete(AnimalArray[i]);
 
