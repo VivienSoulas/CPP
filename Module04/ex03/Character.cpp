@@ -75,6 +75,8 @@ std::string const &Character::getName() const
 
 void Character::equip(AMateria* m)
 {
+	if (!m)
+		return ;
 	for (int i = 0; i < 4; i++)
 	{
 		if (inventory[i] == NULL)
@@ -85,11 +87,16 @@ void Character::equip(AMateria* m)
 		}
 	}
 	delete(m);
-	std::cout << "No empty inventory slot\n";
+	std::cout << "No empty inventory slot left\n";
 }
 
 void Character::unequip(int idx)
 {
+	if (idx > 4)
+	{
+		std::cout << "Invalid index\n";
+		return ;
+	}
 	if (inventory[idx])
 	{
 		std::cout	<< this->getName()
@@ -114,7 +121,7 @@ void Character::use(int idx, ICharacter& target)
 {
 	if (idx > 4 || idx < 0)
 	{
-		std::cout << "index not in bounds\n";
+		std::cout << "Invalid index\n";
 		return ;
 	}
 	if (inventory[idx])
