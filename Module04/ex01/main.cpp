@@ -65,6 +65,7 @@ std::cout	<< "Second cat\n";
 	AnimalArray[1]->whoAmI();
 std::cout	<< "\n\n";
 
+// object slicing
 std::cout << "Object slicing\n\n";
 	Animal *Jerry = new Cat("Cat");
 	Animal * Rufus = new Dog("Dog");
