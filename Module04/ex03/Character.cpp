@@ -84,7 +84,8 @@ void Character::equip(AMateria* m)
 			return ;
 		}
 	}
-	std::cout << "No empty inventory slot\n";	
+	delete(m);
+	std::cout << "No empty inventory slot\n";
 }
 
 void Character::unequip(int idx)
@@ -106,11 +107,16 @@ void Character::unequip(int idx)
 		}
 	}
 	else
-		std::cout << "Empty inventory slot";
+		std::cout << "Empty inventory slot\n";
 }
 
 void Character::use(int idx, ICharacter& target)
 {
+	if (idx > 4 || idx < 0)
+	{
+		std::cout << "index not in bounds\n";
+		return ;
+	}
 	if (inventory[idx])
 		inventory[idx]->use(target);
 	else
