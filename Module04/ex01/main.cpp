@@ -68,7 +68,7 @@ std::cout	<< "\n\n";
 // object slicing
 std::cout << "Object slicing\n\n";
 	Animal *Jerry = new Cat("Cat");
-	Animal * Rufus = new Dog("Dog");
+	Animal *Rufus = new Dog("Dog");
 std::cout	<< "\nJerry: \n";
 	Jerry->whoAmI();
 std::cout	<< "Rufus: \n";
@@ -83,5 +83,7 @@ std::cout << "\n\n";
 		delete(AnimalArray[i]);
 
 	delete[](AnimalArray);
+	delete(Jerry);
+	delete(Rufus);
 	return (0);
 }

@@ -6,56 +6,50 @@
 
 int main()
 {
-	Animal *Giraffe = new Animal("Zoo");
-	Cat *Gismo = new Cat("Cat");
-	Dog *Rex = new Dog("Dog");
-	WrongAnimal *Milou = new WrongAnimal("Milou");
-	WrongCat *Gadget = new WrongCat("Gadget");
-	Cat Soba = *Gismo;
+	Animal *Animals = new Animal("Animals");
+	Animal *Cats = new Cat("Cat");
+	Animal *Dogs = new Dog("Dog");
+	WrongAnimal *WrondAnimals = new WrongAnimal("WrondAnimals");
+	WrongAnimal *WrongCats = new WrongCat("WrongCats");
 
 std::cout << "\n";
 	std::cout	<< "Trying on animal sound: ";
-	Giraffe->makeSound();
+	Animals->makeSound();
 	std::cout	<< "Trying on Cat sound: ";
-	Gismo->makeSound();
+	Cats->makeSound();
 	std::cout	<< "Trying on Dog sound: ";
-	Rex->makeSound();
+	Dogs->makeSound();
 	std::cout	<< "Trying on WrongCat sound: ";
-	Gadget->makeSound();
+	WrongCats->makeSound();
 	std::cout	<< "Trying on WrongAnimal sound: ";
-	Milou->makeSound();
+	WrondAnimals->makeSound();
 std::cout << "\n";
 	std::cout	<< "getting Animal type: "
-				<< Giraffe->getType()
+				<< Animals->getType()
 				<< "\n";
 	std::cout	<< "getting Cat type: "
-				<< Gismo->type
+				<< Cats->getType()
 				<< "\nCat parent animal type: "
-				<< Gismo->getType()
+				<< Cats->getType()
 				<< "\n";
 	std::cout	<< "getting Dog type: "
-				<< Rex->type
+				<< Dogs->getType()
 				<< "\nDog parent animal type: "
-				<< Rex->getType()
+				<< Dogs->getType()
 				<< "\n";
 	std::cout	<< "getting WrongCat type: "
-				<< Gadget->type
+				<< WrongCats->getType()
 				<< "\nWrongCat parent WrongAnimal type: "
-				<< Gadget->getType()
-				<< "\n";
-	std::cout	<< "getting Soba type: "
-				<< Soba.type
-				<< "\nSoba parent animal type: "
-				<< Soba.getType()
+				<< WrongCats->getType()
 				<< "\n";
 std::cout << "\n";
 
 
 
-	delete(Giraffe);
-	delete(Gismo);
-	delete(Rex);
-	delete(Gadget);
-	delete(Milou);
+	delete(Animals);
+	delete(Cats);
+	delete(Dogs);
+	delete(WrongCats);
+	delete(WrondAnimals);
 	return (0);
 }
