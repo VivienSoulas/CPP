@@ -76,6 +76,35 @@ void Bureaucrat::checkGrade( int grade ) const
 }
 
 
+void Bureaucrat::signForm( Form &form )
+{
+	try
+	{
+		form.beSigned(*this);
+	}
+	catch ( std::exception &e)
+	{
+		std::cerr << e.what();
+	}
+	if (form.getSignedStatus() == true)
+	{
+		std::cout	<< "Bureaucrat "
+					<< name
+					<< " signed "
+					<< form.getName()
+					<< "\n";
+	}
+	else
+	{
+		std::cout	<< "Bureaucrat "
+		<< name
+		<< " could not sign "
+		<< form.getName()
+		<< " because his grade was too low\n";
+	}
+}
+
+
 
 std::ostream &operator<<( std::ostream &os, Bureaucrat &other )
 {

@@ -8,7 +8,7 @@ int main()
 	try
 	{
 		Bureaucrat two("Two", 1);
-		std::cout << "trial " << two;
+		std::cout << "trial:\n" << two << "\n";
 		Bureaucrat three("Three", 0);
 		// shouldn't print because earlier action failed
 		std::cout << "trial " << three;
@@ -55,7 +55,7 @@ int main()
 // trying writting with operator overload
 	std::cout << six;
 
-	// this would result in core dumped because of exception not caught
+// this would result in core dumped because of exception not caught
 	// Bureaucrat seven("Seven", 152);
 
 	return (0);
