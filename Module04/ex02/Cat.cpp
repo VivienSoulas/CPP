@@ -22,7 +22,7 @@ Cat::Cat( const Cat &other )
 	std::cout	<< "Cat copy constructor called\n";
 }
 
-Cat&Cat::operator=( const Cat &other )
+Cat &Cat::operator=( const Cat &other )
 {
 	if (this != &other)
 	{

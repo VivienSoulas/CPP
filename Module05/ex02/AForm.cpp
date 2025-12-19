@@ -1,4 +1,5 @@
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "Bureaucrat.hpp"
 
 Form::Form( std::string name, int sign, int exec )
 	: name(name), isFormSigned(false), signingGrade(sign), executionGrade(exec)
@@ -23,11 +24,6 @@ Form::~Form()
 
 
 
-std::string Form::getName() const
-{
-	return (name);
-}
-
 int Form::getSigningGrade() const
 {
 	return (signingGrade);
@@ -43,25 +39,22 @@ bool Form::getSignedStatus() const
 	return (isFormSigned);
 }
 
-
-
-class Form::GradeTooHighException : public std::exception
+std::string Form::getFormName() const
 {
-	public:
-	const char* what() const noexcept override
-	{
-		return ("(form) Grade too High\n");
-	}
-};
+	return (name);
+}
 
-class Form::GradeTooLowException : public std::exception
+
+
+const char* Form::GradeTooHighException::what() const throw()
 {
-	public:
-	const char* what() const noexcept override
-	{
-		return ("Grade too low\n");
-	}
-};
+	return ("(form) Grade too High\n");
+}
+
+const char* Form::GradeTooLowException::what() const throw()
+{
+	return ("(form) Grade too low\n");
+}
 
 
 
@@ -85,7 +78,7 @@ void Form::beSigned( Bureaucrat &bureaucrat )
 
 
 
-std::ostream &operator<<( std::ostream &os, Form &other )
+std::ostream &operator<<( std::ostream &os, const Form &other )
 {
 	os	<<	"Name: " << other.getName()
 		<<	"\nSigned status: " << (other.getSignedStatus() ? "Signed" : "Not signed")
