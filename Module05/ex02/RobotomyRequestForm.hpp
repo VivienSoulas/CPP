@@ -18,7 +18,7 @@ class Robotomy : public Form
 	~Robotomy();
 
 	std::string getName() const;
-	void execute(Bureaucrat const &executor) const;
+	bool execute(Bureaucrat const &executor) const;
 };
 
 #endif

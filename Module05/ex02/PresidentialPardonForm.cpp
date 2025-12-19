@@ -25,7 +25,7 @@ std::string Presidential::getName() const
 
 
 
-void Presidential::execute(Bureaucrat const &executor) const
+bool Presidential::execute(Bureaucrat const &executor) const
 {
 	try
 	{
@@ -35,7 +35,7 @@ void Presidential::execute(Bureaucrat const &executor) const
 	catch (const std::exception &e)
 	{
 		std::cerr << e.what();
-		return ;
+		return (false);
 	}
 	try
 	{
@@ -45,9 +45,10 @@ void Presidential::execute(Bureaucrat const &executor) const
 	catch (const std::exception &e)
 	{
 		std::cerr << e.what();
-		return ;
+		return (false);
 	}
 	Pardon();
+	return (true);
 }
 
 void Presidential::Pardon() const

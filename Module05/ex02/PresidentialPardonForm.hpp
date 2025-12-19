@@ -18,7 +18,7 @@ class Presidential : public Form
 	~Presidential();
 
 	std::string getName() const;
-	void execute(Bureaucrat const &executor) const;
+	bool execute(Bureaucrat const &executor) const;
 };
 
 #endif

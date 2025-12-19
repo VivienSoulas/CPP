@@ -26,7 +26,7 @@ std::string Robotomy::getName() const
 
 
 
-void Robotomy::execute(Bureaucrat const &executor) const
+bool Robotomy::execute(Bureaucrat const &executor) const
 {
 	try
 	{
@@ -36,7 +36,7 @@ void Robotomy::execute(Bureaucrat const &executor) const
 	catch (const std::exception &e)
 	{
 		std::cerr << e.what();
-		return ;
+		return (false);
 	}
 	try
 	{
@@ -46,9 +46,10 @@ void Robotomy::execute(Bureaucrat const &executor) const
 	catch (const std::exception &e)
 	{
 		std::cerr << e.what();
-		return ;
+		return (false);
 	}
 	RobotomyExec();
+	return (true);
 }
 
 void Robotomy::RobotomyExec() const

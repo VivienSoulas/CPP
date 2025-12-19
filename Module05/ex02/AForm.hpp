@@ -26,7 +26,7 @@ class Form
 	bool getSignedStatus() const;
 	void beSigned( Bureaucrat &bureaucrat );
 	virtual std::string getName() const = 0;
-	virtual void execute(Bureaucrat const &executor) const = 0;
+	virtual bool execute(Bureaucrat const &executor) const = 0;
 	
 	protected:
 	class GradeTooHighException : public std::exception

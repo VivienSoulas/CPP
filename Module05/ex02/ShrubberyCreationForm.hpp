@@ -18,7 +18,7 @@ class Shrubbery : public Form
 	~Shrubbery();
 
 	std::string getName() const;
-	void execute(Bureaucrat const &executor) const;
+	bool execute(Bureaucrat const &executor) const;
 };
 
 #endif

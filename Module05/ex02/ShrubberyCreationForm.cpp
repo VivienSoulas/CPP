@@ -24,7 +24,7 @@ std::string Shrubbery::getName() const
 }
 
 
-void Shrubbery::execute(Bureaucrat const &executor) const
+bool Shrubbery::execute(Bureaucrat const &executor) const
 {
 	try
 	{
@@ -34,7 +34,7 @@ void Shrubbery::execute(Bureaucrat const &executor) const
 	catch (const std::exception &e)
 	{
 		std::cerr << e.what();
-		return ;
+		return (false);
 	}
 	try
 	{
@@ -44,9 +44,10 @@ void Shrubbery::execute(Bureaucrat const &executor) const
 	catch (const std::exception &e)
 	{
 		std::cerr << e.what();
-		return ;
+		return (false);
 	}
 	writeFile();
+	return (true);
 }
 
 void Shrubbery::writeFile() const

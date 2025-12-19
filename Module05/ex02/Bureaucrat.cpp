@@ -105,6 +105,19 @@ void Bureaucrat::signForm( Form &form )
 	}
 }
 
+void Bureaucrat::executeForm(Form const &form) const
+{
+	if (form.execute(*this) == false)
+	{
+		std::cerr << "Form not executed\n";
+		return ;
+	}
+	std::cout	<< name
+				<< " executed "
+				<< form.getName()
+				<< "\n";
+}
+
 
 
 std::ostream &operator<<( std::ostream &os, Bureaucrat &other )
