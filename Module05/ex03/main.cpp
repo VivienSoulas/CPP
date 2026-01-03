@@ -3,6 +3,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int main()
 {
@@ -13,6 +14,21 @@ int main()
 	Shrubbery formOne("Home");
 	Robotomy formtwo("Form_two");
 	Presidential formthree("Form_Three");
+
+	Intern intern;
+	// Form *created = intern.makeForm("Robotomy", "Home");
+	// Form *created = intern.makeForm("", "Home");
+	Form *created = intern.makeForm("Presidential", "Home");
+
+	if (created)
+	{
+		one.signForm(*created);
+		one.executeForm	(*created);
+		delete(created);
+	}
+	std::cout	<< "\n\n";
+
+
 	
 	//no possible to create absract class
 	//Form trial("Trial", 1, 150);
