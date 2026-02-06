@@ -6,6 +6,12 @@ do
     ./Conversion "$line"
     echo "---"
 done << 'EOF'
+nan
+-inf
++inf
++inff
+-inff
+nanf
 0
 98
 98.0
@@ -14,24 +20,21 @@ done << 'EOF'
 -98.0f
 -98.9f
 98.9f
-nan
--inf
-+inf
-___________________
+a
+f
+98
  0
 98.00f
+________________________
 1 0
 ""
-a
 aa
 aaa
 a0
 0a
 00a
 .f
-f
 0.f
-98
 98f
 98g
 98.

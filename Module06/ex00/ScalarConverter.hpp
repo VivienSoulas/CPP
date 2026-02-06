@@ -1,7 +1,9 @@
 #pragma once
 
 #include <iostream>
-#include <exception>
+#include <climits>
+#include <limits>
+#include <iomanip>
 
 class ScalarConverter
 {
@@ -14,3 +16,6 @@ class ScalarConverter
 	public:
 	static void convert(std::string input);
 };
+
+bool ft_validation( std::string input );
+double convert_double( std::string input, int *overflow );

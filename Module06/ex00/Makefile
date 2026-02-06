@@ -1,6 +1,6 @@
 NAME		=	Conversion
 
-SOURCES		=	main.cpp ScalarConverter.cpp
+SOURCES		=	main.cpp ScalarConverter.cpp Validation.cpp double.cpp
 
 HEADERS		=	ScalarConverter.hpp
 OBJ_DIR		=	objects
