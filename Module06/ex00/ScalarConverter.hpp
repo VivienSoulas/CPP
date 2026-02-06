@@ -6,12 +6,11 @@
 class ScalarConverter
 {
 	private:
+	ScalarConverter();
+	ScalarConverter(const ScalarConverter &other) = delete;
+	ScalarConverter &operator=(const ScalarConverter &other) = delete;
+	~ScalarConverter();
 
 	public:
-	ScalarConverter();
-	ScalarConverter( const ScalarConverter &other );
-	ScalarConverter &operator=( const ScalarConverter &other ) = delete;
-	virtual ~ScalarConverter();
-
-	static void convert( std::string input );
+	static void convert(std::string input);
 };

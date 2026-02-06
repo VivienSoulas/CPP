@@ -1,8 +1,8 @@
-NAME		=	Conversion
+NAME		=	Serialization
 
-SOURCES		=	main.cpp ScalarConverter.cpp
+SOURCES		=	main.cpp Serializer.cpp Data.cpp
 
-HEADERS		=	ScalarConverter.hpp
+HEADERS		=	Serializer.hpp Data.hpp
 OBJ_DIR		=	objects
 OBJECTS		=	$(SOURCES:%.cpp=$(OBJ_DIR)/%.o)
 
