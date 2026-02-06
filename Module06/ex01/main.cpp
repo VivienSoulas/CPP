@@ -11,10 +11,15 @@ int main()
 	data_structure->whoAmI();
 
 	pointer = Serializer::serialize(data_structure);
-	std::cout << pointer << "\n";
 
 	new_data_structure = Serializer::deserialize(pointer);
+	
+	std::cout << "Printing new_data_structures datas:\n";
 	new_data_structure->whoAmI();
 
+	std::cout	<<	"Printing address of data and new_data\n"
+				<<	&data_structure << "\n" << &new_data_structure << "\n";
+
 	delete(data_structure);
+	return (0);
 }

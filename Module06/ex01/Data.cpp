@@ -7,7 +7,7 @@ Data::Data( std::string input, int number_init  )
 Data::Data( const Data &other )
 {
 	datas = other.datas;
-	number = other.number
+	number = other.number;
 }
 
 Data &Data::operator=( const Data &other )
