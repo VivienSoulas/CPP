@@ -1,8 +1,8 @@
-NAME		=	Iter
+NAME		=	Array
 
-SOURCES		=	main.cpp Array.tpp
+SOURCES		=	main.cpp
 
-HEADERS		=	Array.hpp
+HEADERS		=	Array.hpp Array.tpp
 OBJ_DIR		=	objects
 OBJECTS		=	$(SOURCES:%.cpp=$(OBJ_DIR)/%.o)
 

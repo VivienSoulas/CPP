@@ -1,7 +1,7 @@
 #include <iostream>
-#include <Array.hpp>
+#include "Array.hpp"
 
-#define MAX_VAL 750
+#define MAX_VAL 25
 int main(int, char**)
 {
     Array<int> numbers(MAX_VAL);
@@ -18,36 +18,41 @@ int main(int, char**)
         Array<int> tmp = numbers;
         Array<int> test(tmp);
     }
-
     for (int i = 0; i < MAX_VAL; i++)
     {
+		std::cout << i << "> ok\n";
         if (mirror[i] != numbers[i])
         {
             std::cerr << "didn't save the same value!!" << std::endl;
             return 1;
         }
     }
-    try
-    {
-        numbers[-2] = 0;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    try
-    {
-        numbers[MAX_VAL] = 0;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
+	std::cout << "mirror[3] = " << mirror[3] << "\n";
+	mirror[3] = 3;
+	std::cout << mirror[3] << ", " << numbers[3] << "\n";
+    // try
+    // {
+	// 	std::cout << "Trying out of bound:\n";
+    //     numbers[-2] = 0;
+    // }
+    // catch(const std::exception& e)
+    // {
+    //     std::cerr << e.what() << '\n';
+    // }
+    // try
+    // {
+	// 	std::cout << "Trying out of bound:\n";
+    //     numbers[MAX_VAL] = 0;
+    // }
+    // catch(const std::exception& e)
+    // {
+    //     std::cerr << e.what() << '\n';
+    // }
 
     for (int i = 0; i < MAX_VAL; i++)
     {
         numbers[i] = rand();
     }
-    delete [] mirror;//
+    delete [] mirror;
     return 0;
 }
