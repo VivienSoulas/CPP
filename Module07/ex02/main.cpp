@@ -20,34 +20,31 @@ int main(int, char**)
     }
     for (int i = 0; i < MAX_VAL; i++)
     {
-		std::cout << i << "> ok\n";
         if (mirror[i] != numbers[i])
         {
             std::cerr << "didn't save the same value!!" << std::endl;
             return 1;
         }
     }
-	std::cout << "mirror[3] = " << mirror[3] << "\n";
 	mirror[3] = 3;
-	std::cout << mirror[3] << ", " << numbers[3] << "\n";
-    // try
-    // {
-	// 	std::cout << "Trying out of bound:\n";
-    //     numbers[-2] = 0;
-    // }
-    // catch(const std::exception& e)
-    // {
-    //     std::cerr << e.what() << '\n';
-    // }
-    // try
-    // {
-	// 	std::cout << "Trying out of bound:\n";
-    //     numbers[MAX_VAL] = 0;
-    // }
-    // catch(const std::exception& e)
-    // {
-    //     std::cerr << e.what() << '\n';
-    // }
+     try
+     {
+	 	std::cout << "Trying out of bound:\n";
+         numbers[-2] = 0;
+     }
+     catch(const std::exception& e)
+     {
+         std::cerr << e.what() << '\n';
+     }
+     try
+     {
+	 	std::cout << "Trying out of bound:\n";
+         numbers[MAX_VAL] = 0;
+     }
+     catch(const std::exception& e)
+     {
+         std::cerr << e.what() << '\n';
+     }
 
     for (int i = 0; i < MAX_VAL; i++)
     {

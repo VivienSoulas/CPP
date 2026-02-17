@@ -7,12 +7,12 @@
 class Serializer
 {
 	private:
-
-	public:
 	Serializer();
-	Serializer( const Serializer &other ) = delete;
+	Serializer( const Serializer &other );
 	Serializer &operator=( const Serializer &other ) = delete;
 	virtual ~Serializer();
+
+	public:
 
 	static uintptr_t serialize(Data* ptr);
 	static Data* deserialize(uintptr_t raw);

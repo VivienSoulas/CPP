@@ -10,6 +10,7 @@ class Data
 	int number;
 
 	public:
+	Data() = delete;
 	Data( std::string input, int number_init );
 	Data( const Data &other );
 	Data &operator=( const Data &other );
