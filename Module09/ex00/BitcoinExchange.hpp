@@ -27,6 +27,7 @@ class Bitcoin
 		std::list<std::string> input;
 		std::list<std::string> datas;
 		std::string date;
+		std::string amount_str;
 		char dash = '-';
 		char pipe = '|';
 		char comma = ',';

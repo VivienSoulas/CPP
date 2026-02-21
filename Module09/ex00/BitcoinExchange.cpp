@@ -40,6 +40,27 @@ Bitcoin &Bitcoin::operator=( const Bitcoin &other )
 Bitcoin::~Bitcoin()
 {}
 
+bool checkNumber( std::string temp )
+{
+	int dot = 0;
+	for (size_t i = 0; i < temp.length(); i++)
+	{
+		if (!isdigit(temp[i]))
+		{
+			if (temp[i] == '.')
+			{
+				if (dot == 0)
+					dot++;
+				else
+					return (false);
+			}
+			else
+				return (false);
+		}
+	}
+	return (true);
+}
+
 void Bitcoin::parse()
 {
 	for (auto it = input.begin(); it != input.end(); ++it)
@@ -58,7 +79,7 @@ void Bitcoin::parse()
 				date.pop_back(); // removes the trailing space
 			}
 			else if (i == 1)
-				amount_float = atof(temp.c_str());	
+				amount_str = temp;
 			i++;
 		}
 		if (i == 2)
@@ -107,6 +128,10 @@ bool Bitcoin::validateDate()
 
 bool Bitcoin::validateAmount()
 {
+	amount_str.erase(0, 1);
+	if (!checkNumber(amount_str))
+		return (false);
+	amount_float = atof(amount_str.c_str());
 	if (amount_float < 0)
 	{
 		std::cout << "Error: not a positive number.\n";
@@ -119,7 +144,6 @@ bool Bitcoin::validateAmount()
 	}
 	return (true);
 }
-
 
 bool Bitcoin::searchFile()
 {
@@ -145,7 +169,9 @@ bool Bitcoin::searchFile()
 			std::stringstream ss(read);
 			std::string temp;
 			getline(ss, temp, comma); // skipping the date field
-			getline(ss, temp, comma);
+			getline(ss, temp);
+			if (!checkNumber(temp))
+				continue;
 			rate_float = atof(temp.c_str());
 			float total = rate_float * amount_float;
 			std::cout << date << " => " << amount_float << " = " << total << "\n";
@@ -163,13 +189,15 @@ void Bitcoin::searchClosest()
 		std::string data_date;
 		std::string data_rate;
 		getline(ss, data_date, comma);
-		getline(ss, data_rate, comma);
+		getline(ss, data_rate);
+		if (!checkNumber(data_rate))
+			continue;
 		if (data_date <= date)
 		{
 			rate_float = atof(data_rate.c_str());
 			float total = rate_float * amount_float;
 			std::cout << date << " => " << amount_float << " = " << total << "\n";
-			return ;
+				return ;
 		}
 	}
 	std::cout << "Error: no exchange rate available before " << date << "\n";
