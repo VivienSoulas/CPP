@@ -1,8 +1,8 @@
-NAME		=	EasyFind
+NAME		=	RPN
 
-SOURCES		=	main.cpp
+SOURCES		=	main.cpp RPN.cpp
 
-HEADERS		=	easyfind.hpp
+HEADERS		=	RPN.hpp
 
 OBJ_DIR		=	objects
 OBJECTS		=	$(SOURCES:%.cpp=$(OBJ_DIR)/%.o)
