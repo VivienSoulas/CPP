@@ -1,8 +1,8 @@
-NAME		=	EasyFind
+NAME		=	PmergeMe
 
-SOURCES		=	main.cpp
+SOURCES		=	main.cpp PmergeMe.cpp
 
-HEADERS		=	easyfind.hpp
+HEADERS		=	PmergeMe.hpp
 
 OBJ_DIR		=	objects
 OBJECTS		=	$(SOURCES:%.cpp=$(OBJ_DIR)/%.o)

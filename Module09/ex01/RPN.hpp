@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <deque>
+#include <forward_list>
 #include <sstream>
 #include <stack>
 
@@ -10,7 +10,7 @@ class RPN
 	private:
 	int result;
 	std::string input;
-	std::deque<std::string> tokens;
+	std::forward_list<std::string> tokens;
 	std::stack<int> nums;
 
 	public:

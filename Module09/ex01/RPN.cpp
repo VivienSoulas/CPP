@@ -19,8 +19,9 @@ bool RPN::parse()
 	{
 		if (word.length() > 1 || ((!isdigit(word[0]) &&(word[0] != '+' && word[0] != '-' && word[0] != '*' && word[0] != '/'))))
 			return (false);
-		tokens.push_back(word);
+		tokens.push_front(word);
 	}
+	tokens.reverse();
 	if (!check())
 		return (false);
 	return (true);
@@ -28,14 +29,15 @@ bool RPN::parse()
 
 bool RPN::check()
 {
-	if (tokens.size() == 1)
+	int i = std::distance(tokens.begin(), tokens.end());
+	if (i == 1)
 	{
 		if (!isdigit((*tokens.begin())[0]))
 			return (false);
 		result = std::stoi(*tokens.begin());
 		return (true);
 	}
-	if (tokens.size() < 3)
+	if (i < 3)
 		return (false);
 
 	if (!isdigit((*tokens.begin())[0]))
