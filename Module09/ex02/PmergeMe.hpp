@@ -33,4 +33,10 @@ class PmergeMe
 		std::deque<int> input_deque;
 		std::chrono::microseconds elapsed_vector;
 		std::chrono::microseconds elapsed_deque;
+		int a; // biggest
+		int b; // smallest
+		std::vector<int> S_vector; // main
+		std::vector<int> pend_vector;
+		std::deque<int> S_deque; //main
+		std::deque<int> pend_deque;
 };

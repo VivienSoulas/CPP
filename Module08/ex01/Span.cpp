@@ -58,15 +58,12 @@ int Span::shortestSpan()
 	if (getLast() == 0 || getLast() == 1)
 		throw ImpossibleSpan();
 	int shortest = INT_MAX;
-	int distance = 0;
-	for (size_t i = 0; i < getLast(); i++)
+	std::sort(data->begin(), data->end());
+	for (size_t i = 1; i < data->size(); i++)
 	{
-		for (size_t j = i + 1; j < getLast(); j++)
-		{
-			distance = std::abs((*data)[j] - (*data)[i]);
-			if (distance < shortest)
-				shortest = distance;
-		}
+		int diff = (*data)[i] - (*data)[i - 1];
+		if (diff < shortest)
+			shortest = diff;
 	}
 	return (shortest);
 }
@@ -75,18 +72,9 @@ int Span::longestSpan()
 {
 	if (getLast() == 0 || getLast() == 1)
 		throw ImpossibleSpan();
-	int longest = INT_MIN;
-	int distance = 0;
-	for (size_t i = 0; i < getLast(); i++)
-	{
-		for (size_t j = i + 1; j < getLast(); j++)
-		{
-			distance = std::abs((*data)[j] - (*data)[i]);
-			if (distance > longest)
-				longest = distance;
-		}
-	}
-	return (longest);
+	int min = *std::min_element(data->begin(), data->end());
+	int max = *std::max_element(data->begin(), data->end());
+	return (max - min);
 }
 
 const char* Span::OutOfBoundException::what() const noexcept

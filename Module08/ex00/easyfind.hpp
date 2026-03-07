@@ -4,6 +4,7 @@
 #include <vector>
 #include <array>
 #include <exception>
+#include <algorithm>
 
 class NotFoundException : public std::exception
 {
@@ -17,11 +18,9 @@ class NotFoundException : public std::exception
 template<typename T>
 size_t easyfind( T const &data, int x )
 {
-	for (size_t i = 0; i < data.size(); i++)
-	{
-		if (x == data[i])
-			return (i);
-	}
+	auto it = std::find(data.begin(), data.end(), x);
+	if (it != data.end())
+		return (std::distance(data.begin(), it));
 	throw NotFoundException();
 	return (-1);
 }

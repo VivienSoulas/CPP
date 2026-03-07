@@ -1,4 +1,41 @@
+#include <iostream>
+#include <vector>
 #include "MutantStack.hpp"
+
+// int main() {
+//     MutantStack<int> mstack;
+//     std::vector<int> vstack;
+
+//     // Fill both containers
+//     for (int i = 0; i < 10; ++i) {
+//         mstack.push(i);
+//         vstack.push_back(i);
+//     }
+
+//     // Iterate MutantStack
+//     std::cout << "MutantStack iteration: ";
+//     for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); ++it)
+//         std::cout << *it << " ";
+//     std::cout << std::endl;
+
+//     // Iterate std::vector
+//     std::cout << "Vector iteration: ";
+//     for (std::vector<int>::iterator it = vstack.begin(); it != vstack.end(); ++it)
+//         std::cout << *it << " ";
+//     std::cout << std::endl;
+
+//     // Access last element
+//     std::cout << "MutantStack top: " << mstack.top() << std::endl;
+//     std::cout << "Vector back: " << vstack.back() << std::endl;
+
+//     // Pop elements
+//     mstack.pop();
+//     vstack.pop_back();
+//     std::cout << "MutantStack size after pop: " << mstack.size() << std::endl;
+//     std::cout << "Vector size after pop: " << vstack.size() << std::endl;
+
+//     return 0;
+// }
 
 int main()
 {
@@ -25,32 +62,3 @@ int main()
 	std::stack<int> s(mstack);
 	return 0;
 }
-
-//#include <iostream>
-//#include <vector>
-
-//int main()
-//{
-//	std::vector<int> mstack;
-//	mstack.push_back(5);
-//	mstack.push_back(17);
-//	std::cout << mstack.back() << std::endl;
-//	mstack.pop_back();
-//	std::cout << mstack.size() << std::endl;
-//	mstack.push_back(3);
-//	mstack.push_back(5);
-//	mstack.push_back(737);
-
-//	mstack.push_back(0);
-//	std::vector<int>::iterator it = mstack.begin();
-//	std::vector<int>::iterator ite = mstack.end();
-//	++it;
-//	--it;
-//	while (it != ite)
-//	{
-//	std::cout << *it << std::endl;
-//	++it;
-//	}
-//	std::vector<int> s(mstack);
-//	return 0;
-//}
