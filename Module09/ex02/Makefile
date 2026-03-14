@@ -8,7 +8,7 @@ OBJ_DIR		=	objects
 OBJECTS		=	$(SOURCES:%.cpp=$(OBJ_DIR)/%.o)
 
 CC			=	c++
-CFLAGS		=	-Wall -Werror -Wextra -std=c++11
+CFLAGS		=	-Wall -Werror -Wextra -std=c++11 -MMD -MP
 
 # Colors for output
 RED			=	\033[0;31m
@@ -21,6 +21,14 @@ CYAN		=	\033[1;34m
 RESET		=	\033[0m
 
 
+DEBUG ?= 0
+
+ifeq ($(DEBUG),1)
+CFLAGS += -DDEBUG=1
+else
+CFLAGS += -DDEBUG=0
+endif
+
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
@@ -31,6 +39,10 @@ $(OBJ_DIR)/%.o: %.cpp $(HEADERS)
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$(CYAN)Compiled: $<$ $(RESET)"
+
+debug:
+	@$(MAKE) fclean
+	@$(MAKE) all DEBUG=1
 
 # Cleaning rules
 clean:
@@ -45,4 +57,6 @@ fclean: clean
 re: fclean all
 
 # Phony targets
-.PHONY: all clean fclean re
+.PHONY: all debug clean fclean re
+
+-include $(OBJECTS:.o=.d)

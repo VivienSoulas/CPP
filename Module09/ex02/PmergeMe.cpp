@@ -1,25 +1,55 @@
 #include "PmergeMe.hpp"
 
 PmergeMe::PmergeMe()
-	: num_comp(0), is_odd(false)
+	: num_comp(0)
 {}
 
 PmergeMe::~PmergeMe()
 {}
 
-bool PmergeMe::run( const std::vector<std::string> &args )
+template <typename T>
+void PmergeMe::printBefore( const T &container )
 {
-	if (!checkInput(args))
-		return (false);
-	if (!checkDuplicate(input_vector))
-		return (false);
-	printBefore(input_vector);
-	mergeInsertSort(input_vector);
-	//mergeInsertSort(input_deque);
-	printAfter(input_vector);
-	PrintResult(input_vector);
-	//PrintResult(input_deque);
-	return (true);
+	std::cout << "Before:\n";
+	for (const auto &it : container)
+		std::cout << it << " ";
+	std::cout << "\n\n";
+}
+
+template <typename T>
+void PmergeMe::printAfter( const T &container )
+{
+	std::cout << "After:\n";
+	for (const auto &it : container)
+		std::cout << it << " ";
+	std::cout << "\n\n";
+}
+
+template <typename T>
+void PmergeMe::PrintResult( const T &container )
+{
+	std::cout	<<	"Time to process a range of "
+				<< container.size()
+				<< " elements with std::";
+	typeid(T) == typeid(std::vector<int>) ? std::cout << "vector: " << elapsed_vector.count() : std::cout << "deque: " << elapsed_deque.count();
+	std::cout << " micro seconds\n";
+	// std::cout << "Numbers of Comparaison: " << num_comp / 2 << "\n";
+}
+
+template <typename T>
+void PmergeMe::printDebug( const T &main, const T &pend )
+{
+	std::cout << "main: ";
+	for (auto it : main)
+	{
+		std::cout << it << " ";
+	}
+	std::cout << "\nPend: ";
+	for (auto it : pend)
+	{
+		std::cout << it << " ";
+	}
+	std::cout << "\n\n";
 }
 
 bool PmergeMe::checkInput( const std::vector<std::string> &args )
@@ -58,38 +88,10 @@ bool PmergeMe::checkDuplicate( const T &container)
 	return (true);
 }
 
-template <typename T>
-void PmergeMe::printBefore( const T &container )
-{
-	std::cout << "Before:\n";
-	for (const auto &it : container)
-		std::cout << it << " ";
-	std::cout << "\n\n";
-}
-
-template <typename T>
-void PmergeMe::printAfter( const T &container )
-{
-	std::cout << "After:\n";
-	for (const auto &it : container)
-		std::cout << it << " ";
-	std::cout << "\n\n";
-}
-
-template <typename T>
-void PmergeMe::PrintResult( const T &container )
-{
-	std::cout	<<	"Time to process a range of "
-				<< container.size()
-				<< " elements with std::";
-	typeid(T) == typeid(std::vector<int>) ? std::cout << "vector: " << elapsed_vector.count() : std::cout << "deque: " << elapsed_deque.count();
-	std::cout << " micro seconds\n";
-}
-
 int PmergeMe::compare( int a, int b )
 {
 	num_comp++;
-	return (a > b);
+	return (a < b);
 }
 
 int PmergeMe::Jacobsthal( int i )
@@ -101,6 +103,25 @@ int PmergeMe::Jacobsthal( int i )
 	return (round(pow(2, i + 1) - pow(-1, i + 1)) / 3);
 }
 
+bool PmergeMe::run( const std::vector<std::string> &args )
+{
+	auto start = std::chrono::high_resolution_clock::now();
+	if (!checkInput(args))
+		return (false);
+	if (!checkDuplicate(input_vector))
+		return (false);
+	auto end = std::chrono::high_resolution_clock::now();
+	elapsed_deque = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+	elapsed_vector = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+	printBefore(input_vector);
+	mergeInsertSort(input_vector);
+	mergeInsertSort(input_deque);
+	printAfter(input_vector);
+	PrintResult(input_vector);
+	PrintResult(input_deque);
+	return (true);
+}
+
 template <typename T>
 void PmergeMe::mergeInsertSort(T& container)
 {
@@ -109,37 +130,93 @@ void PmergeMe::mergeInsertSort(T& container)
 	auto end = std::chrono::high_resolution_clock::now();
 	auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 
-	typeid(T) == typeid(std::vector<int>) ? elapsed_vector = elapsed : elapsed_deque = elapsed;
+	typeid(T) == typeid(std::vector<int>) ? elapsed_vector += elapsed : elapsed_deque += elapsed;
 }
 
 template <typename T>
 void PmergeMe::sort(T& container)
 {
-	static int order = 1;
+	T main, pend;
 
-	int pair_size = container.size() / order;
-	if (pair_size < 2)
-		return ;
-	if ((pair_size % 2) == 1)
-		is_odd = true;
-	
-std::cout << "pair_size = " << pair_size << "\n";
-	for (auto it = container.begin(); it + 2 * pair_size <= container.end(); it += 2 * pair_size)
+	for (auto it = container.begin() + 1; it < container.end(); it += 2)
 	{
-		auto first_pair_end = it + pair_size - 1;
-		auto second_pair_end = it + 2 * pair_size -1;
-		std::cout << "pair compared are " << container[*first_pair_end] << " " << container[*second_pair_end] << "\n";
-		if (compare(container[*first_pair_end], container[*second_pair_end]))
+// putting bigger number of the pair in main and smaller in pend
+		if (compare(*it, *(it - 1)))
 		{
-			std::swap_ranges(it, it + pair_size, it + pair_size);
+			main.push_back(*(it - 1));
+			pend.push_back(*it);
+		}
+		else
+		{
+			main.push_back(*it);
+			pend.push_back(*(it - 1));
 		}
 	}
 
-	std::cout << "NEW CONTAINER ORDER\n";
-	for (auto &it : container)
-		std::cout << it << " ";
-	std::cout << "\n";
+// if odd, add the odd part in main
+	if (container.size() % 2 != 0)
+		main.push_back(container.back());
 
-	order *= 2;
-	sort(container);
+// recursion exit point
+	if (main.size() <= 1)
+	{
+		insert(main, pend);
+		container = main;
+		return ;
+	}
+
+	if (DEBUG && (typeid(T) == typeid(std::vector<int>)))
+		printDebug(main, pend);
+
+// recursion
+	sort(main);
+
+	if (DEBUG && (typeid(T) == typeid(std::vector<int>)))
+		printDebug(main, pend);
+
+// pend insersion
+	insert(main, pend);
+	container = main;
+}
+
+template <typename T>
+void PmergeMe::insert( T &main, T &pend )
+{
+// Generate Jacobsthal indexes
+	std::vector<int> jacobsthal_indexes;
+	int n =  pend.size();
+	int i = 1;
+
+	while (true)
+	{
+		int index = Jacobsthal(i);
+		if (index >= n)
+			break ;
+		jacobsthal_indexes.push_back(index);
+		i++;
+	}
+
+// Mark which indices have been used
+	std::vector<bool> used(n, false);
+	for (auto i : jacobsthal_indexes)
+		used[i] = true;
+
+// Insert pend elements at Jacobsthal indices
+	for (int idx : jacobsthal_indexes)
+	{
+		int value = pend[idx];
+		auto pos = std::lower_bound(main.begin(), main.end(), value,
+			[this](int a, int b) { return compare(a, b); });
+		main.insert(pos, value);
+	}
+
+// Insert remaining pend elements in order
+	for (int idx = 0; idx < n; ++idx) {
+		if (!used[idx]) {
+			int value = pend[idx];
+			auto pos = std::lower_bound(main.begin(), main.end(), value,
+				[this](int a, int b) { return compare(a, b); });
+			main.insert(pos, value);
+		}
+	}
 }

@@ -20,7 +20,9 @@ class PmergeMe
 		bool checkInput( const std::vector<std::string> &args );
 		int compare( int a, int b );
 		template <typename T>
-		bool checkDuplicate( const T &container);
+		void printDebug( const T &main, const T &pend );
+		template <typename T>
+		bool checkDuplicate( const T &container );
 		template <typename T>
 		void PrintResult( const T &container );
 		template <typename T>
@@ -31,17 +33,14 @@ class PmergeMe
 		void printAfter( const T &container );
 		template <typename T>
 		void sort( T& container );
+		template <typename T>
+		void insert( T& main, T &pend );
 		int Jacobsthal( int i );
 
 		private:
 		int num_comp;
-		bool is_odd;
 		std::vector<int> input_vector;
 		std::deque<int> input_deque;
 		std::chrono::microseconds elapsed_vector;
 		std::chrono::microseconds elapsed_deque;
-		std::vector<int> main_vector;
-		std::vector<int> pend_vector;
-		std::deque<int> main_deque;
-		std::deque<int> pend_deque;
 };
